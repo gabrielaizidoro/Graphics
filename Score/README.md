@@ -1,4 +1,4 @@
-# 📊 Análise de Score de DesempenhoAnálise de Score de Desempenho
+# 📊 Análise de Score de Desempenho
 
 Este projeto calcula o **score de desempenho mensal** , com base em três pilares:
 
