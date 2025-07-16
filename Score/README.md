@@ -1,31 +1,39 @@
-# 📊 Análise de Score de Desempenho
+# 📊 Análise e Visualização de Score de Desempenho
 
-Este projeto calcula o **score de desempenho mensal** , com base em três pilares:
+Este projeto realiza o **cálculo mensal de desempenho**, com base em indicadores operacionais, e gera **visualizações gráficas automáticas** a partir das notas. Ele está dividido em duas etapas principais:
 
-1. ✅ **Processamento** (emissão de apólices e parcelas)
-2. 💰 **Conciliação financeira** (comissão processada vs. paga)
-3. 📄 **Contrato / Acurácia** (emissões fora de parâmetro)
-
-Cada dimensão recebe uma **nota de 1 a 5**, com base em regras pré-estabelecidas de percentual. As notas são salvas em planilhas separadas com **cores visuais** para facilitar a leitura.
+1. **Cálculo das Notas** com base em regras definidas de desempenho
+2. **Geração de Imagens** com ranking, notas e quadros ilustrativos
 
 ---
 
-## 🧮 Lógica de Cálculo
+## 📈 Indicadores Calculados
+
+As notas de cada entidade são baseadas em três pilares principais:
+
+1. ✅ **Processamento**  
+2. 💰 **Conciliação Financeira**  
+3. 📄 **Acurácia / Contrato**
+
+Cada métrica recebe uma **nota entre 1 e 5**, conforme a performance relativa.
+
+---
+
+## 🧮 Regras de Cálculo (Resumo)
 
 ### 🎯 Processamento (ponderado)
-- % processado valor = valor emissão processado / total emissão
-- % processado quantidade = qtd emissão processada / total qtd
-- % ponderado = 0.7 * valor + 0.3 * quantidade
+- % processado (valor e quantidade)
+- Cálculo ponderado: `0.7 * valor + 0.3 * quantidade`
 
-### 💰 Conciliação financeira
-- % = comissão processada / comissão paga
+### 💰 Conciliação
+- % conciliação entre valores processados e pagos
 
 ### 📄 Acurácia contratual
-- % = 1 - (fora do parâmetro / total valor emissão)
+- Percentual de registros dentro do parâmetro definido
 
 ---
 
-## 🏆 Tabela de Notas
+## 🏆 Tabela de Notas por Faixa
 
 | Faixa (%)        | Nota | Cor       |
 |------------------|------|-----------|
@@ -37,35 +45,45 @@ Cada dimensão recebe uma **nota de 1 a 5**, com base em regras pré-estabelecid
 
 ---
 
+## 🖼️ Geração de Imagens
+
+Com base nos resultados de notas, o script gera automaticamente imagens contendo:
+
+- 📊 **Ranking Geral** com classificação de todas as entidades
+- 🔍 **Ranking Individual** para cada entidade, ocultando as demais (por privacidade)
+- 🧾 **Quadro lateral** com as notas mensais e médias
+
+As imagens são personalizadas com:
+- Título superior com mês/ano (editável)
+- Cores e fontes ajustáveis
+- Tabela lateral formatada e centralizada
+
+---
+
 ## 📂 Estrutura de Pastas
-```
 📦Score
- ┣ 📁 venv/                    # Ambiente virtual Python
- ┣ 📁 Input/                   # Planilhas base com os dados
- ┣ 📁 Output/                  # Arquivo Excel final com scores
- ┣ 📄 main.py                  # Script principal de cálculo
+ ┣ 📁 venv/                     # Ambiente virtual Python
+ ┣ 📁 Input/                    # Planilhas base e imagem modelo
+ ┣ 📁 Output/                   # Arquivo Excel e imagens finais
+ ┣ 📄 main.py                  # Cálculo das notas
+ ┣ 📄 gerar_imagens_score.py   # Geração automática das imagens
  ┣ 📄 README.md                # Este arquivo
- ┗ 📄 requirements.txt         # Bibliotecas usadas
-```
----
-
-## ▶️ Como usar
-
-1. Coloque a planilha base em /Input
-2. Execute o script main.py:
-   python main.py
-3. O resultado será salvo na pasta /Output, com:
-   - Aba “Base Original” (sem alterações)
-   - Aba “Processamento”
-   - Aba “Conciliação financeira”
-   - Aba “Contrato_Acurácia”
+ ┗ 📄 requirements.txt         # Bibliotecas utilizadas
 
 ---
 
-## 📌 Observações
-- As cores são aplicadas diretamente nas células de nota.
-- A planilha original não é modificada.
-- Tipos de dados são mantidos (datas, strings, numéricos).
+## ▶️ Como Executar
+
+### 1. Gerar Notas (Excel)
+python main.py
+
+### 2. Gerar Imagens com Ranking e Notas
+python gerar_imagens_score.py
+
+As imagens serão salvas na pasta `/Output`, contendo:
+
+- Imagem com o ranking geral
+- Imagem individual por entidade com quadro de notas
 
 ---
 
@@ -75,15 +93,15 @@ Cada dimensão recebe uma **nota de 1 a 5**, com base em regras pré-estabelecid
 - Bibliotecas:
   - pandas
   - openpyxl
+  - Pillow
 
-Instale via:
+Instale com:
 pip install -r requirements.txt
 
 ---
 
-## 👩‍💻 Autor
-
+## 👩‍💻 Autora
 
 **Gabriela Izidoro**  
 Automação • Dados • Processos Contábeis  
-[github.com/gabrielaizidoro](https://github.com/gabrielaizidoro)
+🔗 https://github.com/gabrielaizidoro
